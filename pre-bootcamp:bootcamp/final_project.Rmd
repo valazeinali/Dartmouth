@@ -170,6 +170,8 @@ Let's re-examine our pheno data set with the summary function again.
 ```{r pheno sum}
 
 ## Enter your own code here
+summary(pheno)
+
 
 ```
 
@@ -178,7 +180,8 @@ We need to further delve into our disease label in order to simplify some of thi
 ```{r disease lab, warning=F}
 
 ## Enter your own code here
-
+attach(pheno)
+summary(disease_label)
 ```
 
 Here we have the counts of all the diseases in our data set. If you look at the actual excel file (not the csv), I've put in a dictionary for these acronyms if you're curious. Here, our controls and our genetic unaffected are both considered to be healthy controls. Any label which contains PD is some subset of Parkison's Disease, and the other labels represent other neurological disorders. We need to make a variable which records a 1 for our cases, and a 0 for our controls. Here, since we are interested in a signature that distinguishes PD from our other disease, the other diseases are technically part of the control set.
@@ -186,8 +189,13 @@ Here we have the counts of all the diseases in our data set. If you look at the 
 Try to set your case control vector using the grep function to find the indicies which contain "PD". At the end, sum your case vector to check that it worked. Make another variable of the words "case" and "control"
 
 ```{r case vector}
-
 ## Enter your own code here
+pheno$PD <-grepl("PD", pheno$disease_label) # Label True for PD and False for no PD and store it into a column named "PD" in our pheno dataframe
+pheno$PD <- as.numeric(pheno$PD) # Convert TRUE TO 1 and FALSE to 0
+
+# 1: Parkison's Disease
+# 0: NOT Parkison's Disease
+table(pheno$PD)
 
 ```
 
@@ -200,7 +208,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 
 #uncomment to load limma for first run through
 
-#BiocManager::install("limma")
+BiocManager::install("limma")
 library(limma)
 ```
 
