@@ -5,3 +5,4 @@ Bootcamp material is in R
 
 First week of bootcamp is coding.
 Second week of bootcamp is math/stats.
+:)
