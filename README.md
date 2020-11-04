@@ -8,4 +8,4 @@ Second week of bootcamp is math/stats.
 :)
 
 Will upload more soon...
-
+.
